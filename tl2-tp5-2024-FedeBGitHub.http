@@ -1,0 +1,6 @@
+@tl2_tp5_2024_FedeBGitHub_HostAddress = http://localhost:5046
+
+GET {{tl2_tp5_2024_FedeBGitHub_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
