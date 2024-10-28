@@ -14,6 +14,7 @@ public class Producto
 
     public int Precio { get => precio;}
     public string Descripcion { get => descripcion; }
+    public int IdProducto { get => idProducto;}
 }
 
 
