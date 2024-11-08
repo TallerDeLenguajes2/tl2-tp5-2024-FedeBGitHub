@@ -16,21 +16,21 @@ public class ProducutoController : ControllerBase
         productoRepository = new ProductoRepository();
     }
 
-    [HttpPost("PostProducto")]
+    [HttpPost("/api/Producto")]
     public ActionResult<Producto> PostProducto(Producto producto)
     {
         productoRepository.CrearProducto(producto);
         return Ok(producto);
     }
 
-    [HttpGet("GetProductos")]
+    [HttpGet("/api/Producto")]
     public ActionResult<List<Producto>> GetProductos()
     {
         listaProductos = productoRepository.listarProductos();
         return Ok(listaProductos);
     }
 
-    [HttpPut("UpdateProducto/{id}")]
+    [HttpPut("/api/Producto/{id}")]
     public ActionResult<bool> UpdateProducto(int id, Producto producto)
     {
         productoRepository.modificarProducto(id,producto);

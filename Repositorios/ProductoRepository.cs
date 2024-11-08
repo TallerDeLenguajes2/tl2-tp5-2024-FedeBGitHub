@@ -67,24 +67,30 @@ public class ProductoRepository
         return LProductos;
     }
 
-/*
-    private static void GetEmpleados(string connectionString)
+    public Producto productoPorId(int idBuscado)
     {
-        string queryString = "SELECT Nombre, IDEmpleado FROM dbo.Empleado;";
-
-        using (SqliteConnection connection = new SqliteConnection(connectionString))
+        Producto p = null;
+        using (SqliteConnection connection = new SqliteConnection(cadenaConexion))
         {
-            SqliteCommand command = new SqliteCommand(queryString, connection);
+            string query = "SELECT * FROM Productos WHERE idProducto = @id";
             connection.Open();
-            using(SqliteDataReader reader = command.ExecuteReader())
+            SqliteCommand command = new SqliteCommand(query, connection);
+            command.Parameters.Add(new SqliteParameter("@id",idBuscado));
+            using (SqliteDataReader reader = command.ExecuteReader())
             {
+
                 while (reader.Read())
                 {
-                    Console.WriteLine(String.Format("{0}, {1}",reader[0], reader[1]));
+                    int id = Convert.ToInt32(reader["idProducto"]);
+                    string descripcion = Convert.ToString(reader["Descripcion"]);
+                    int precio;
+                    int.TryParse(reader["Precio"].ToString(), out precio); //otra forma de conversion de datos usando TryParse funciona tambien para float y es lo que usaba en TallerI
+                    p = new Producto (id,descripcion,precio);
                 }
             }
             connection.Close();
         }
+        return p;
     }
-*/
+
 }

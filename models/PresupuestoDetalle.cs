@@ -8,6 +8,11 @@ public class PresupuestoDetalle
     public int Cantidad { get => cantidad;}
     public Producto Producto { get => producto; }
 
+    public PresupuestoDetalle(Producto producto, int cantidad)
+    {
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
     void cargarProducto(Producto p)
     {
         this.producto = p;

@@ -7,10 +7,23 @@ public class Presupuesto
     private DateTime fechaCreacion;
     private List<PresupuestoDetalle> detalle;
 
-    float MontoPresupuesto()
+    public int IdPresupuesto { get => idPresupuesto;}
+    public string NombreDestinatario { get => nombreDestinatario;}
+    public DateTime FechaCreacion { get => fechaCreacion;}
+    public List<PresupuestoDetalle> Detalle { get => detalle;}
+
+    public Presupuesto(int idPresupuesto, string nombreDestinatario, DateTime fechaCreacion)
+    {
+        this.idPresupuesto = idPresupuesto;
+        this.nombreDestinatario = nombreDestinatario;
+        this.fechaCreacion = fechaCreacion;
+        this.detalle = new List<PresupuestoDetalle>();
+    }
+
+    public float MontoPresupuesto()
     {
         float monto = 0;
-        foreach (PresupuestoDetalle pd in detalle)
+        foreach (PresupuestoDetalle pd in Detalle)
         {
             monto = monto + (pd.Producto.Precio * pd.Cantidad);
         }
@@ -18,14 +31,18 @@ public class Presupuesto
         return monto;
     }
 
-    double montoPresupuestoConIva()
+    public double montoPresupuestoConIva()
     {
         return (MontoPresupuesto() * 1.21);
     }
 
-    int cantidadProductos()
+    public int cantidadProductos()
     {
-        return detalle.Count;
+        return Detalle.Count;
     }
     
+    public void agregarDetalle(PresupuestoDetalle detalle)
+    {
+        this.detalle.Add(detalle);
+    }
 }
